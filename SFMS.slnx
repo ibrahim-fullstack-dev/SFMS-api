@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SFMS.Api/SFMS.Api.csproj" />
+    <Project Path="src/SFMS.Application/SFMS.Application.csproj" />
+    <Project Path="src/SFMS.Domain/SFMS.Domain.csproj" />
+    <Project Path="src/SFMS.Infrastructure/SFMS.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SFMS.IntegrationTests/SFMS.IntegrationTests.csproj" />
+    <Project Path="tests/SFMS.UnitTests/SFMS.UnitTests.csproj" />
+  </Folder>
+</Solution>
