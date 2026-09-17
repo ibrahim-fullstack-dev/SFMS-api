@@ -1,16 +1,17 @@
-using Microsoft.EntityFrameworkCore;
-using SFMS.Infrastructure.Persistence;
+using SFMS.Application;
+using SFMS.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Register application and infrastructure services.
+builder.Services.AddApplication();
+builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
+builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+
+builder.Services.AddAuthentication();
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -20,21 +21,18 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 
     app.UseSwaggerUI(options =>
-{
-    options.SwaggerEndpoint(
-        "/openapi/v1.json",
-        "SFMS API v1");
-});
+    {
+        options.SwaggerEndpoint(
+            "/openapi/v1.json",
+            "SFMS API v1");
+    });
 }
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllers();
-
-
 
 app.Run();
