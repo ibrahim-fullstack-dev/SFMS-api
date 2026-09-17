@@ -12,7 +12,7 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
 
         builder.HasKey(x => x.Id);
 
-        // BaseEntity
+        // BaseEntity properties
         builder.Property(x => x.Code)
             .IsRequired()
             .HasMaxLength(50);
@@ -27,7 +27,7 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
         builder.Property(x => x.RowVersion)
             .IsRowVersion();
 
-        // Branch
+        // Branch properties
         builder.Property(x => x.BranchCode)
             .IsRequired()
             .HasMaxLength(50);
@@ -37,12 +37,6 @@ public class BranchConfiguration : IEntityTypeConfiguration<Branch>
 
         builder.Property(x => x.PostCode)
             .HasMaxLength(20);
-
-        // Company relationship
-        builder.HasOne(x => x.Company)
-            .WithMany()
-            .HasForeignKey(x => x.CompanyId)
-            .OnDelete(DeleteBehavior.Restrict);
 
         // Parent Branch relationship
         builder.HasOne(x => x.ParentBranch)
