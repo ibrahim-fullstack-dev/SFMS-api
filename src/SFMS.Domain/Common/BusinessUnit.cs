@@ -8,10 +8,12 @@ public class BusinessUnit : AuditableEntity
 
     public string PhoneNumber { get; set; } = null!;
 
-    public string Email { get; set; } = null!;
+    public string EmailAddress { get; set; } = null!;
 
     public DateOnly StartDate { get; set; }
 
     public bool IsProfitCenter { get; set; }
+
+    public decimal? AnnualBudget { get; set; }
 
 }

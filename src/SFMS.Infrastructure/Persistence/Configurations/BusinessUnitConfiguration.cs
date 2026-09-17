@@ -12,7 +12,7 @@ public class BusinessUnitConfiguration : IEntityTypeConfiguration<BusinessUnit>
 
         builder.HasKey(x => x.Id);
 
-        // BaseEntity
+        // BaseEntity properties
         builder.Property(x => x.Code)
             .IsRequired()
             .HasMaxLength(50);
@@ -27,12 +27,12 @@ public class BusinessUnitConfiguration : IEntityTypeConfiguration<BusinessUnit>
         builder.Property(x => x.RowVersion)
             .IsRowVersion();
 
-        // BusinessUnit
+        // BusinessUnit properties
         builder.Property(x => x.PhoneNumber)
             .IsRequired()
             .HasMaxLength(30);
 
-        builder.Property(x => x.Email)
+        builder.Property(x => x.EmailAddress)
             .IsRequired()
             .HasMaxLength(254);
 
@@ -42,7 +42,10 @@ public class BusinessUnitConfiguration : IEntityTypeConfiguration<BusinessUnit>
         builder.Property(x => x.IsProfitCenter)
             .IsRequired();
 
-        // Parent Business Unit relationship
+        builder.Property(x => x.AnnualBudget)
+            .HasPrecision(18, 2);
+
+        // Parent BusinessUnit relationship
         builder.HasOne(x => x.ParentBusinessUnit)
             .WithMany()
             .HasForeignKey(x => x.ParentBusinessUnitId)
