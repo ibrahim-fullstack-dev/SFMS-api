@@ -37,6 +37,12 @@ public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
         builder.Property(x => x.IsOperational)
             .IsRequired();
 
+        builder.Property(x => x.AnnualBudget)
+        .HasPrecision(18, 2);
+
+        builder.Property(x => x.BudgetCode)
+            .HasMaxLength(50);
+
         // Parent Department relationship
         builder.HasOne(x => x.ParentDepartment)
             .WithMany()
