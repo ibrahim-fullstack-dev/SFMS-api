@@ -9,4 +9,9 @@ public class Department : AuditableEntity
     public Department? ParentDepartment { get; set; }
 
     public bool IsOperational { get; set; } = true;
+
+    public decimal? AnnualBudget { get; set; }
+
+    public string? BudgetCode { get; set; }
+
 }
